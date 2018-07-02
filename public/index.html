@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ChalkStreet</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angularjs1.7.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-route.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/register.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css"> 
+</head>
+<body ng-app="myApp">
+    <div class="container">
+    <div class="header-top">
+    <div class="upper-header container"> 
+      <div class="logo">
+          <a href="index.php">
+            <h1>ChalkStreet</h1>
+            <span>Learn Anytime, Anywhere</span>
+          </a>
+      </div>  
+    </div>
+      <div class="clearfix"></div>
+      </div>
+    </div>
+    <div ng-view></div>
+    <script>
+        var app = angular.module('myApp', ['ngRoute']);
+
+        app.config(function ($routeProvider) {
+            $routeProvider
+            .when('/', {
+                templateUrl: '/login.html',
+                controller: 'AppCtrl'
+            }).when('/user_main', {
+                templateUrl: '/user_main.html',
+                controller: 'ArticleCtrl'
+            }).otherwise({
+                redirectTo: "/"
+            });
+         });
+             
+        app.controller('AppCtrl', ['$scope', '$http','$window','$location', function($scope, $http,$window,$location) 
+        { 
+           $scope.loginCheck = function(){
+                $scope.user.error = "";
+                query = {
+                    "user_email" : $scope.user.login,
+                    "user_pass" : $scope.user.password
+                };
+                $http.post('/authenticate', query).then(function(response){
+                    data = response.data;
+                    if(data.length==1)
+                    {
+                        //console.log($location.search('/user_main'));
+                        $location.path('/user_main');
+                    }
+                    else
+                    {
+                        $scope.user.error = "Please enter valid credentails";
+                    }
+                });
+            };
+
+        }]);
+
+        app.controller('ArticleCtrl', ['$scope', '$http','$window','$location', function($scope, $http,$window,$location) 
+            { 
+            $http.get('/articleList').then(function(response){
+                $scope.articleList = response.data;
+            });
+        }]);
+       
+    </script>
+</body>
+</html>
+

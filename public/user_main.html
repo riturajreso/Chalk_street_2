@@ -1,0 +1,13 @@
+<div class="content-main" ng-controller="ArticleCtrl" >
+  <div class="admin-box col-sm-4" ng-repeat="article in articleList">
+    <div class="panel panel-back noti-box">
+      <div class="image-logo">
+        <a href =""><img ng-src="{{article.image}}">
+        <div class ="overlay image-title"><h3><b>{{article.title}}</b></h3></div> 
+        </a>
+      </div>
+    <button class="like" title ="" data-placement="top" data-toggle="tooltip" data-original-title="" id=""><i class="fa fa fa-thumbs-up"></i></button>
+    <button class="com" title ="Comment" data-placement="top" data-toggle="tooltip" data-original-title="" id=""><i class="fa fa-comment"></i></a></button>
+    </div>
+  </div>
+</div>

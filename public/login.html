@@ -1,0 +1,68 @@
+<div class="container-fluid register-container" ng-controller="AppCtrl" >
+  <div class="login-box form1">
+    <div><p class="register-title">Log In</p></div>
+      <fieldset class="register-input-container">
+        <div class="register-input-item">
+          <input type="email" name="username_login" id="username_login" class="user-name register-user-input" placeholder="User Email" ng-model="user.login" >
+          <div id="login_name_error" class="val_error"></div>
+        </div>
+        <div class="register-input-item">
+          <input type="password" name="password_login" id="password_login" class="user-password register-user-input" placeholder="Choose Password" ng-model="user.password">
+          <div id="login_password_error" class="val_error" ng-modal="user.error">{{user.error}}</div> 
+        </div>
+      </fieldset>
+      <fieldset class="login-button-container">
+        <button class="login-button" id="loginOk" ng-click="loginCheck()">Login</button>
+      </fieldset>
+    <div class="register-link-container">
+      <div class="register-login-link">
+        <p class="message"><span class="register-info-link">Don't have an account?</span> 
+        <a href="#" class="register-link" id="reg_new">Register here!</a></p>
+      </div>
+    </div>
+  </div>  
+  <div class="register-box form2">
+  <div><p class="register-title">Sign Up with Us</p></div>
+    <fieldset class="register-input-container">
+      <div class="register-input-item">
+        <input type="text" name="fname" id="fname" class="user-email register-user-input" placeholder="First Name" ng-model="user.fname">
+        <div id="fname_error" class="val_error"></div>
+      </div>
+      <div class="register-input-item">
+        <input type="text" name="lname" id="lname" class="user-email register-user-input" placeholder="Last Name" ng-model="user.lname">
+        <div id="lname_error" class="val_error"></div>
+      </div>
+      <div class="register-input-item">
+        <input type="email" name="username" id="username" class="user-email register-user-input" placeholder="User Email" ng-model="user.ename">
+        <div id="email_error" class="val_error"></div>
+      </div>
+      <div class="register-input-item">
+        <input type="password" name="password" id="pwd" class="user-password register-user-input" placeholder="Enter Password" id="password" ng-model="user.pwd">
+      </div>
+      <div class="register-input-item">
+        <input type="password" name="password_confirmation" id="cnfpwd" class="user-password register-user-input" placeholder="Confirm Password" id="password_confirm" ng-model="user.cpwd">
+        <div id="password_error" class="val_error"></div>
+      </div>
+    </fieldset>
+    <fieldset class="register-button-container">
+      <button class="register-button" id="register" ng-click="register()">REGISTER</button>
+    </fieldset>
+  <div class="register-link-container">
+    <div class="register-login-link">
+      <p class="message"><span class="register-info-link">Already have an account?</span>
+      <a href="#" class="register-link">Login!</a></p>
+    </div>
+  </div>
+</div>
+</div>
+ <script type="text/javascript">
+$(document).ready(function()
+{
+  $('.message a').click(function() {
+    $('.form1').animate({height: "toggle", opacity: "toggle"}, "slow");
+     $('.form2').animate({height: "toggle", opacity: "toggle"}, "slow");
+  }); 
+});
+</script> 
+</body>
+</html>
